@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' - ' : '' ?>Vite &amp; Gourmand</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?= @filemtime(__DIR__ . '/../../../public/assets/css/style.css') ?: 1 ?>">
 </head>
 <body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
