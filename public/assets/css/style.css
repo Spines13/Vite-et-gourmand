@@ -337,3 +337,28 @@ footer ul {
     padding: 1rem 1.25rem;
     margin-bottom: 1.5rem;
 }
+
+.table-commandes {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.table-commandes th,
+.table-commandes td {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #e5ddd0;
+}
+
+.suivi-commande {
+    list-style: none;
+    padding: 0;
+}
+
+.suivi-commande li {
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid #b5482a;
+    margin-bottom: 0.5rem;
+    background: #fff;
+}
