@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Vite & Gourmand — Gestion de projet</title>
+<style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #2b2118; line-height: 1.55; margin: 0; font-size: 0.93rem; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    h1 { font-size: 1.7rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.2rem; border-bottom: 2px solid #b5482a; padding-bottom: 0.3rem; margin-top: 1.5rem; }
+    .couverture { text-align: center; padding-top: 30mm; }
+    .couverture h1 { font-size: 2.3rem; }
+    table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+    th, td { border: 1px solid #e5ddd0; padding: 0.45rem 0.65rem; text-align: left; vertical-align: top; }
+    th { background: #fff4e5; }
+    ol, ul { padding-left: 1.4rem; }
+    li { margin-bottom: 0.35rem; }
+    .encadre { background: #fff4e5; border: 1px solid #f0c987; border-radius: 6px; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.88rem; }
+    .statut-fait { color: #1e5631; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<section class="page couverture">
+    <h1>Vite &amp; Gourmand</h1>
+    <p>Documentation de gestion de projet</p>
+</section>
+
+<section class="page">
+    <h1>Méthodologie</h1>
+    <p>
+        Le projet a été mené selon une démarche itérative inspirée de l'agilité : le besoin a
+        d'abord été découpé en fonctionnalités autonomes et priorisées par dépendance technique
+        (une fonctionnalité n'est démarrée que lorsque celles dont elle dépend sont terminées et
+        validées), chaque fonctionnalité étant développée, testée puis intégrée avant de passer
+        à la suivante plutôt que de tout développer en parallèle sans jalon de validation.
+    </p>
+
+    <h2>Cycle appliqué à chaque fonctionnalité</h2>
+    <ol>
+        <li>Création d'une branche <code>feature/&lt;nom&gt;</code> depuis <code>developpement</code>.</li>
+        <li>Développement (modèles d'accès aux données, règles métier, interface).</li>
+        <li>Tests fonctionnels manuels de bout en bout (création de données réelles, vérification
+        en base de données, nettoyage post-test).</li>
+        <li>Fusion dans <code>developpement</code>, puis, une fois un ensemble cohérent de
+        fonctionnalités validé, fusion de <code>developpement</code> dans <code>main</code>.</li>
+    </ol>
+    <p>L'historique Git constitue la trace de ce suivi (voir <code>git log --graph</code> sur le dépôt).</p>
+</section>
+
+<section class="page">
+    <h1>Découpage du besoin (backlog)</h1>
+    <table>
+        <thead><tr><th>#</th><th>Fonctionnalité</th><th>Statut</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>Base de données relationnelle (schéma + jeu de données)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>2</td><td>Conception de la base non relationnelle (MongoDB)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>3</td><td>Structure du projet et mise en place Git</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>4</td><td>Authentification (inscription, connexion, mot de passe oublié)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>5</td><td>Catalogue de menus (vue globale, filtres, détail)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>6</td><td>Tunnel de commande (prix, réduction, livraison)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>7</td><td>Espace utilisateur (commandes, suivi, avis, profil)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>8</td><td>Espace employé (catalogue, commandes, avis)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>9</td><td>Espace administrateur (employés, statistiques, CA)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>10</td><td>Contact et pages légales</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>11</td><td>Documentation (technique, utilisateur, graphique, projet)</td><td class="statut-fait">Terminé</td></tr>
+            <tr><td>12</td><td>Déploiement et dépôt GitHub public</td><td>À venir</td></tr>
+        </tbody>
+    </table>
+
+    <div class="encadre">
+        Ce tableau constitue le backlog du projet. Il a vocation à être reporté dans l'outil de
+        gestion de projet retenu (Trello, Notion, Jira...), chaque ligne devenant une carte /
+        un ticket assortie de son statut d'avancement.
+    </div>
+</section>
+
+<section class="page">
+    <h1>Outils</h1>
+    <ul>
+        <li><strong>Versionning :</strong> Git, avec un modèle à trois niveaux de branches
+        (<code>main</code> / <code>developpement</code> / <code>feature/*</code>) conforme aux
+        exigences du cahier des charges.</li>
+        <li><strong>Suivi des tâches :</strong> backlog structuré par fonctionnalité (voir
+        page précédente), à reporter dans l'outil de gestion de projet choisi.</li>
+        <li><strong>Tests :</strong> validation manuelle systématique de chaque fonctionnalité
+        contre une base de données réelle avant fusion, plutôt qu'une simple relecture de code.</li>
+    </ul>
+
+    <h2>Prochaines étapes</h2>
+    <ol>
+        <li>Publication du dépôt sur GitHub (public).</li>
+        <li>Choix et configuration de la plateforme de déploiement.</li>
+        <li>Mise en place de l'outil de gestion de projet définitif et report du backlog.</li>
+    </ol>
+</section>
+
+</body>
+</html>
