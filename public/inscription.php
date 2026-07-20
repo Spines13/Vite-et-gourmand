@@ -61,8 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['role'] = 'utilisateur';
         $_SESSION['prenom'] = $valeurs['prenom'];
 
+        $destination = $_SESSION['redirect_after_login'] ?? '/';
+        unset($_SESSION['redirect_after_login']);
+
         flash('success', 'Bienvenue ! Votre compte a été créé avec succès.');
-        redirect('/');
+        redirect($destination);
     }
 }
 
@@ -107,8 +110,7 @@ require __DIR__ . '/../src/Views/partials/header.php';
             <input type="text" id="pays" name="pays" value="<?= e($valeurs['pays']) ?>">
 
             <label for="mot_de_passe">Mot de passe *</label>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required
-                   aria-describedby="aide-mot-de-passe" autocomplete="new-password">
+            <input type="password" id="mot_de_passe" name="mot_de_passe" required aria-describedby="aide-mot-de-passe" autocomplete="new-password">
             <p id="aide-mot-de-passe" class="aide">10 caractères minimum, avec au moins une majuscule, une minuscule, un chiffre et un caractère spécial.</p>
 
             <label for="mot_de_passe_confirmation">Confirmer le mot de passe *</label>
