@@ -291,3 +291,49 @@ footer ul {
     padding: 1rem;
     margin: 1.5rem 0;
 }
+
+.formulaire-commande {
+    max-width: 640px;
+}
+
+.formulaire-commande fieldset {
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+}
+
+.formulaire-commande legend {
+    font-weight: 700;
+    padding: 0 0.5rem;
+}
+
+.formulaire-commande label {
+    display: block;
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+.formulaire-commande input,
+.formulaire-commande select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+    font: inherit;
+    margin-top: 0.25rem;
+}
+
+.formulaire-commande .aide {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.recapitulatif-prix {
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
