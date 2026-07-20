@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Vite & Gourmand — Documentation technique</title>
+<script src="assets/mermaid.min.js"></script>
+<style>
+    @page { size: A4; margin: 16mm 15mm; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #2b2118; line-height: 1.55; margin: 0; font-size: 0.92rem; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.2rem; border-bottom: 2px solid #b5482a; padding-bottom: 0.3rem; margin-top: 1.5rem; }
+    h3 { font-size: 1rem; color: #7a2f1a; }
+    .couverture { text-align: center; padding-top: 30mm; }
+    .couverture h1 { font-size: 2.2rem; }
+    table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+    th, td { border: 1px solid #e5ddd0; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #fff4e5; }
+    ul, ol { padding-left: 1.3rem; }
+    li { margin-bottom: 0.3rem; }
+    code { background: #f1e9db; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.82rem; }
+    .mermaid { text-align: center; margin: 1rem 0; }
+    .encadre { background: #fff4e5; border: 1px solid #f0c987; border-radius: 6px; padding: 0.7rem 1rem; margin: 0.75rem 0; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<section class="page couverture">
+    <h1>Vite &amp; Gourmand</h1>
+    <p>Documentation technique</p>
+</section>
+
+<section class="page">
+    <h1>Réflexions technologiques initiales</h1>
+
+    <h2>Choix de la stack</h2>
+    <p>
+        Le cahier des charges n'imposait aucune technologie précise (hormis l'usage conjoint
+        d'une base relationnelle et d'une base non relationnelle). Le choix s'est porté sur une
+        stack volontairement simple et sans framework :
+    </p>
+    <table>
+        <thead><tr><th>Couche</th><th>Choix</th><th>Justification</th></tr></thead>
+        <tbody>
+            <tr><td>Front-end</td><td>HTML5, CSS, JavaScript vanilla</td><td>Aucune dépendance de build (webpack, npm...) à maintenir ; suffisant pour les interactions demandées (filtres AJAX, calcul de prix en direct).</td></tr>
+            <tr><td>Back-end</td><td>PHP natif + PDO</td><td>PDO impose les requêtes préparées (protection injections SQL), sans la courbe d'apprentissage d'un framework complet ; adapté à un hébergement mutualisé classique.</td></tr>
+            <tr><td>Base relationnelle</td><td>MySQL / MariaDB</td><td>Standard de fait dans l'écosystème PHP (XAMPP), gratuit, bien documenté.</td></tr>
+            <tr><td>Base non relationnelle</td><td>MongoDB</td><td>Modèle document adapté au reporting dénormalisé (agrégations rapides pour les statistiques admin), en complément du relationnel qui reste la source de vérité transactionnelle.</td></tr>
+            <tr><td>Emails</td><td>PHP <code>mail()</code> + Mercury Mail (local)</td><td>Aucune dépendance externe (pas de compte SMTP tiers requis pour développer/tester), remplaçable par un vrai relais SMTP en production.</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Architecture applicative</h2>
+    <p>Architecture en couches simples, sans routeur ni ORM :</p>
+    <ul>
+        <li><strong>public/</strong> — unique racine web exposée (sécurité : le code métier n'est jamais accessible directement en HTTP).</li>
+        <li><strong>src/Config</strong> — connexion PDO, chargement des variables d'environnement, bootstrap de session.</li>
+        <li><strong>src/Models</strong> — accès aux données via PDO (requêtes préparées).</li>
+        <li><strong>src/Services</strong> — règles métier (calcul de prix, envoi de mails, authentification, statistiques Mongo).</li>
+        <li><strong>src/Views/partials</strong> — gabarits communs (en-tête, pied de page, navigation).</li>
+    </ul>
+
+    <h2>Sécurité</h2>
+    <ul>
+        <li>Mots de passe hachés avec <code>password_hash()</code> (bcrypt), jamais stockés en clair.</li>
+        <li>Toutes les requêtes SQL utilisent des requêtes préparées PDO (protection contre les injections SQL).</li>
+        <li>Toutes les sorties HTML passent par un échappement systématique (protection XSS).</li>
+        <li>Jeton anti-CSRF sur tous les formulaires de modification.</li>
+        <li>Contrôle d'accès par rôle sur chaque page sensible (<code>AuthService::requireRole()</code>).</li>
+        <li>Sessions cookies en <code>HttpOnly</code> + <code>SameSite=Lax</code>.</li>
+        <li>Jetons de réinitialisation de mot de passe stockés hachés (SHA-256) et à durée de vie limitée (1h).</li>
+    </ul>
+
+    <h2>Configuration de l'environnement de travail</h2>
+    <ol>
+        <li>XAMPP (Apache, PHP 8.1+, MySQL/MariaDB) pour l'exécution locale.</li>
+        <li>Un VirtualHost Apache dédié pointant vers <code>public/</code>, pour que les chemins
+        racine-relatifs (<code>/assets/...</code>) fonctionnent correctement (voir README.md).</li>
+        <li>MongoDB Community Server + <code>mongosh</code> pour la base non relationnelle.</li>
+        <li>Git, avec le modèle de branches décrit dans le README (main / développement /
+        feature).</li>
+        <li>Un fichier <code>.env</code> (non versionné) dérivé de <code>.env.example</code>
+        pour les identifiants de connexion.</li>
+    </ol>
+    <p>Le détail pas-à-pas de l'installation figure dans le fichier <code>README.md</code> à la
+    racine du dépôt.</p>
+</section>
+
+<section class="page">
+    <h1>Modèle conceptuel de données</h1>
+    <p>Schéma relationnel complet (voir aussi <code>database/schema.sql</code>). Les tables de
+    liaison (<code>menu_regime</code>, <code>menu_plat</code>, <code>plat_allergene</code>) sont
+    représentées comme des relations many-to-many.</p>
+
+    <pre class="mermaid">
+erDiagram
+    ROLE ||--o{ UTILISATEUR : attribue
+    UTILISATEUR ||--o{ COMMANDE : passe
+    UTILISATEUR ||--o{ AVIS : redige
+    UTILISATEUR {
+        int utilisateur_id PK
+        string email
+        string mot_de_passe
+        string nom
+        string prenom
+        bool actif
+    }
+    ROLE {
+        int role_id PK
+        string code
+    }
+    THEME ||--o{ MENU : categorise
+    MENU }o--o{ REGIME : "menu_regime"
+    MENU }o--o{ PLAT : "menu_plat"
+    PLAT }o--o{ ALLERGENE : "plat_allergene"
+    MENU ||--o{ MENU_IMAGE : illustre
+    MENU {
+        int menu_id PK
+        string titre
+        int theme_id FK
+        int nombre_personne_minimum
+        decimal prix_personne_minimum
+        int stock_disponible
+    }
+    PLAT {
+        int plat_id PK
+        string titre_plat
+        string categorie
+    }
+    MENU ||--o{ COMMANDE : concerne
+    STATUT_COMMANDE ||--o{ COMMANDE : possede
+    STATUT_COMMANDE ||--o{ COMMANDE_HISTORIQUE : trace
+    COMMANDE ||--o{ COMMANDE_HISTORIQUE : suit
+    COMMANDE ||--o| AVIS : genere
+    COMMANDE {
+        int commande_id PK
+        string numero_commande
+        int utilisateur_id FK
+        int menu_id FK
+        int statut_id FK
+        decimal prix_total
+        int nombre_personnes
+    }
+    AVIS {
+        int avis_id PK
+        int commande_id FK
+        int note
+        string statut
+    }
+    </pre>
+</section>
+
+<section class="page">
+    <h1>Diagramme de cas d'utilisation</h1>
+    <pre class="mermaid">
+flowchart LR
+    Visiteur((Visiteur))
+    Utilisateur((Utilisateur))
+    Employe((Employé))
+    Administrateur((Administrateur))
+
+    Visiteur --> UC1[Consulter et filtrer les menus]
+    Visiteur --> UC2[Créer un compte]
+    Visiteur --> UC3[Contacter l'entreprise]
+
+    Utilisateur --> UC4[Commander un menu]
+    Utilisateur --> UC5[Suivre une commande]
+    Utilisateur --> UC6[Modifier / annuler une commande]
+    Utilisateur --> UC7[Laisser un avis]
+    Utilisateur --> UC8[Gérer son profil]
+
+    Employe --> UC9[Gérer menus, plats, horaires]
+    Employe --> UC10[Traiter les commandes]
+    Employe --> UC11[Modérer les avis]
+
+    Administrateur --> UC12[Gérer les comptes employés]
+    Administrateur --> UC13[Consulter statistiques et CA]
+    Administrateur -.hérite.-> Employe
+    </pre>
+</section>
+
+<section class="page">
+    <h1>Diagramme de séquence — Passer une commande</h1>
+    <pre class="mermaid">
+sequenceDiagram
+    actor U as Utilisateur
+    participant W as Application (PHP)
+    participant DB as MySQL
+    participant M as MongoDB
+    participant Mail as Service mail
+
+    U->>W: Clique "Commander ce menu"
+    alt non connecté
+        W-->>U: Redirection vers connexion / inscription
+        U->>W: Se connecte
+    end
+    W-->>U: Formulaire pré-rempli (menu, coordonnées)
+    U->>W: Renseigne date, adresse, nombre de personnes
+    W-->>U: Calcul du prix en temps réel (API)
+    U->>W: Valide la commande
+    W->>DB: INSERT commande + decrement stock
+    DB-->>W: OK (commande créée)
+    W->>M: Synchronise commande_analytics
+    W->>Mail: Envoie email de confirmation
+    W-->>U: Page de confirmation
+    </pre>
+</section>
+
+<section class="page">
+    <h1>Documentation du déploiement</h1>
+
+    <h2>Démarche</h2>
+    <p>Le déploiement suit le même modèle que l'installation locale, en remplaçant les services
+    locaux (XAMPP, Mercury Mail) par leurs équivalents managés sur la plateforme choisie :</p>
+    <ol>
+        <li>Provisionner une base MySQL/MariaDB managée et importer <code>database/schema.sql</code>
+        puis <code>database/seed.sql</code> (avec <code>--default-character-set=utf8mb4</code>).</li>
+        <li>Provisionner une base MongoDB managée (ou Atlas) et exécuter
+        <code>database/mongodb/init.js</code>.</li>
+        <li>Configurer les variables d'environnement de production (voir <code>.env.example</code>) :
+        identifiants base de données, URI MongoDB, configuration SMTP réelle.</li>
+        <li>Définir <code>public/</code> comme racine web du service de déploiement.</li>
+        <li>Déployer le code depuis la branche <code>main</code> du dépôt Git.</li>
+        <li>Vérifier les parcours critiques (inscription, commande, changement de statut,
+        emails) en production avant la mise à disposition finale.</li>
+    </ol>
+
+    <div class="encadre">
+        La plateforme de déploiement définitive (fly.io, Heroku, Azure, Vercel...) sera précisée
+        et documentée en détail (étapes de configuration spécifiques, URL de production) une
+        fois choisie ; la démarche ci-dessus reste valable quelle que soit la plateforme
+        retenue, ces dernières fonctionnant toutes sur ce même principe (build + variables
+        d'environnement + base de données managée).
+    </div>
+</section>
+
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+</script>
+</body>
+</html>
