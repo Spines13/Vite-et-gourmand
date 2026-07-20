@@ -188,4 +188,147 @@ final class CommandeModel
             throw $e;
         }
     }
+
+    // ---- Gestion (espace employe / administrateur) ----------------------
+
+    private const ORDRE_WORKFLOW = [
+        'en_attente'                 => 'accepte',
+        'accepte'                    => 'en_preparation',
+        'en_preparation'             => 'en_cours_livraison',
+        'en_cours_livraison'         => 'livre',
+        'en_attente_retour_materiel' => 'terminee',
+    ];
+
+    /** Determine le prochain statut logique, en tenant compte du pret de materiel. */
+    public static function prochainStatutCode(array $commande): ?string
+    {
+        if ($commande['statut_code'] === 'livre') {
+            return (bool) $commande['pret_materiel'] ? 'en_attente_retour_materiel' : 'terminee';
+        }
+        return self::ORDRE_WORKFLOW[$commande['statut_code']] ?? null;
+    }
+
+    /**
+     * @param array{prix_min?:float,statut_code?:string,recherche?:string} $filtres
+     */
+    public static function listAll(array $filtres = []): array
+    {
+        $conditions = [];
+        $params = [];
+
+        if (!empty($filtres['statut_code'])) {
+            $conditions[] = 'sc.code = :statut_code';
+            $params['statut_code'] = $filtres['statut_code'];
+        }
+        if (!empty($filtres['recherche'])) {
+            $conditions[] = '(c.numero_commande LIKE :recherche OR u.nom LIKE :recherche OR u.prenom LIKE :recherche OR u.email LIKE :recherche)';
+            $params['recherche'] = '%' . $filtres['recherche'] . '%';
+        }
+
+        $sql = 'SELECT c.*, sc.code AS statut_code, sc.libelle AS statut_libelle, m.titre AS menu_titre,
+                       u.nom AS utilisateur_nom, u.prenom AS utilisateur_prenom, u.email AS utilisateur_email
+                FROM commande c
+                JOIN statut_commande sc ON sc.statut_id = c.statut_id
+                JOIN menu m ON m.menu_id = c.menu_id
+                JOIN utilisateur u ON u.utilisateur_id = c.utilisateur_id'
+            . (!empty($conditions) ? ' WHERE ' . implode(' AND ', $conditions) : '')
+            . ' ORDER BY c.date_commande DESC';
+
+        $stmt = getPDO()->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+    public static function setPretMateriel(int $commandeId, bool $pretMateriel): void
+    {
+        $stmt = getPDO()->prepare('UPDATE commande SET pret_materiel = :pret WHERE commande_id = :id');
+        $stmt->execute(['pret' => $pretMateriel ? 1 : 0, 'id' => $commandeId]);
+    }
+
+    /** Fait avancer la commande au prochain statut du workflow. */
+    public static function avancerStatut(int $commandeId): array
+    {
+        $commande = self::findById($commandeId);
+        $prochainCode = self::prochainStatutCode($commande);
+        if ($prochainCode === null) {
+            return $commande;
+        }
+
+        $pdo = getPDO();
+        $pdo->beginTransaction();
+        try {
+            $statutId = self::statutIdParCode($prochainCode);
+            $dateLimiteMateriel = $prochainCode === 'en_attente_retour_materiel'
+                ? self::ajouterJoursOuvres(new DateTimeImmutable(), 10)->format('Y-m-d H:i:s')
+                : null;
+
+            $stmt = $pdo->prepare(
+                'UPDATE commande SET statut_id = :statut_id, materiel_date_limite = :date_limite WHERE commande_id = :id'
+            );
+            $stmt->execute(['statut_id' => $statutId, 'date_limite' => $dateLimiteMateriel, 'id' => $commandeId]);
+
+            $pdo->prepare('INSERT INTO commande_historique (commande_id, statut_id) VALUES (:id, :statut_id)')
+                ->execute(['id' => $commandeId, 'statut_id' => $statutId]);
+
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+
+        return self::findById($commandeId);
+    }
+
+    public static function confirmerRetourMateriel(int $commandeId): array
+    {
+        $pdo = getPDO();
+        $pdo->beginTransaction();
+        try {
+            $statutId = self::statutIdParCode('terminee');
+            $pdo->prepare('UPDATE commande SET statut_id = :statut_id, materiel_restitue = 1 WHERE commande_id = :id')
+                ->execute(['statut_id' => $statutId, 'id' => $commandeId]);
+            $pdo->prepare('INSERT INTO commande_historique (commande_id, statut_id) VALUES (:id, :statut_id)')
+                ->execute(['id' => $commandeId, 'statut_id' => $statutId]);
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+        return self::findById($commandeId);
+    }
+
+    /** Annulation par un employe : necessite la preuve d'une prise de contact avec le client. */
+    public static function annulerParEmploye(int $commandeId, int $menuId, string $motif, string $modeContact): array
+    {
+        $pdo = getPDO();
+        $pdo->beginTransaction();
+        try {
+            $statutId = self::statutIdParCode('annulee');
+            $pdo->prepare(
+                'UPDATE commande SET statut_id = :statut_id, motif_annulation = :motif, mode_contact_annulation = :mode
+                 WHERE commande_id = :id'
+            )->execute(['statut_id' => $statutId, 'motif' => $motif, 'mode' => $modeContact, 'id' => $commandeId]);
+            $pdo->prepare('UPDATE menu SET stock_disponible = stock_disponible + 1 WHERE menu_id = :id')
+                ->execute(['id' => $menuId]);
+            $pdo->prepare('INSERT INTO commande_historique (commande_id, statut_id, commentaire) VALUES (:id, :statut_id, :commentaire)')
+                ->execute(['id' => $commandeId, 'statut_id' => $statutId, 'commentaire' => $motif]);
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+        return self::findById($commandeId);
+    }
+
+    private static function ajouterJoursOuvres(DateTimeImmutable $date, int $jours): DateTimeImmutable
+    {
+        $restants = $jours;
+        while ($restants > 0) {
+            $date = $date->modify('+1 day');
+            if ((int) $date->format('N') < 6) {
+                $restants--;
+            }
+        }
+        return $date;
+    }
 }
