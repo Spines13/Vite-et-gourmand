@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' - ' : '' ?>Vite &amp; Gourmand</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<?php require __DIR__ . '/nav.php'; ?>
+<main id="contenu-principal">
