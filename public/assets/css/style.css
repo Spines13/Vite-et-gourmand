@@ -377,3 +377,39 @@ footer ul {
     color: #7a4a1f;
     font-weight: 600;
 }
+
+.graphique-barres {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.graphique-barre-ligne {
+    display: grid;
+    grid-template-columns: 200px 1fr 3rem;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.graphique-barre-piste {
+    background: #f1e9db;
+    border-radius: 4px;
+    height: 1.25rem;
+    overflow: hidden;
+}
+
+.graphique-barre-remplissage {
+    display: block;
+    height: 100%;
+    background: #b5482a;
+}
+
+.graphique-barre-valeur {
+    text-align: right;
+    font-weight: 600;
+}
