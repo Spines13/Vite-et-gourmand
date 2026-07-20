@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/Env.php';
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/../Helpers/functions.php';
 
 loadEnv(__DIR__ . '/../../.env');
 

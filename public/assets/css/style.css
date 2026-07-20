@@ -102,3 +102,314 @@ footer ul {
     list-style: none;
     padding: 0;
 }
+
+.formulaire-page {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.formulaire-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.formulaire-page label {
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+.formulaire-page input,
+.formulaire-page select,
+.formulaire-page textarea {
+    padding: 0.5rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.formulaire-page .aide {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.formulaire-page button {
+    margin-top: 1.25rem;
+    cursor: pointer;
+    border: none;
+}
+
+.erreurs {
+    background: #fdecea;
+    color: #7a1f14;
+    border: 1px solid #f3c1ba;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    list-style: none;
+}
+
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.flash-success {
+    background: #e7f5ea;
+    color: #1e5631;
+    border: 1px solid #bfe3c8;
+}
+
+.flash-error {
+    background: #fdecea;
+    color: #7a1f14;
+    border: 1px solid #f3c1ba;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    background: transparent;
+    color: #b5482a;
+    border: 1px solid #b5482a;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filtres-menus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+}
+
+.filtres-menus div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filtres-menus label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.filtres-menus input,
+.filtres-menus select {
+    padding: 0.4rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+}
+
+.menus-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-card {
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #eee6d8;
+}
+
+.menu-card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.menu-card-theme {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #b5482a;
+    margin: 0;
+}
+
+.menu-card-rupture {
+    color: #7a1f14;
+    font-weight: 600;
+}
+
+.menu-detail-galerie {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.menu-detail-galerie img {
+    width: 220px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee6d8;
+    flex-shrink: 0;
+}
+
+.menu-detail-plats {
+    padding-left: 1.25rem;
+}
+
+.allergenes {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.menu-detail-conditions {
+    background: #fff4e5;
+    border: 1px solid #f0c987;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+}
+
+.formulaire-commande {
+    max-width: 640px;
+}
+
+.formulaire-commande fieldset {
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+}
+
+.formulaire-commande legend {
+    font-weight: 700;
+    padding: 0 0.5rem;
+}
+
+.formulaire-commande label {
+    display: block;
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+.formulaire-commande input,
+.formulaire-commande select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+    font: inherit;
+    margin-top: 0.25rem;
+}
+
+.formulaire-commande .aide {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.recapitulatif-prix {
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.table-commandes {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.table-commandes th,
+.table-commandes td {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #e5ddd0;
+}
+
+.suivi-commande {
+    list-style: none;
+    padding: 0;
+}
+
+.suivi-commande li {
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid #b5482a;
+    margin-bottom: 0.5rem;
+    background: #fff;
+}
+
+.sous-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #fff4e5;
+    border-bottom: 1px solid #f0c987;
+}
+
+.sous-nav a {
+    text-decoration: none;
+    color: #7a4a1f;
+    font-weight: 600;
+}
+
+.graphique-barres {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.graphique-barre-ligne {
+    display: grid;
+    grid-template-columns: 200px 1fr 3rem;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.graphique-barre-piste {
+    background: #f1e9db;
+    border-radius: 4px;
+    height: 1.25rem;
+    overflow: hidden;
+}
+
+.graphique-barre-remplissage {
+    display: block;
+    height: 100%;
+    background: #b5482a;
+}
+
+.graphique-barre-valeur {
+    text-align: right;
+    font-weight: 600;
+}

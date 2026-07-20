@@ -32,10 +32,13 @@ traiteur bordelais Vite & Gourmand.
    ```
 
 3. **Créer la base de données relationnelle** : démarrer MySQL depuis le
-   panneau de contrôle XAMPP, puis importer les scripts dans l'ordre :
+   panneau de contrôle XAMPP, puis importer les scripts dans l'ordre. Le
+   flag `--default-character-set=utf8mb4` est indispensable : sans lui, le
+   client `mysql.exe` utilise l'encodage par défaut de Windows et corrompt
+   les caractères accentués (Noël, Pâques...) dès l'import.
    ```
-   C:\xampp\mysql\bin\mysql.exe -u root < database\schema.sql
-   C:\xampp\mysql\bin\mysql.exe -u root < database\seed.sql
+   C:\xampp\mysql\bin\mysql.exe --default-character-set=utf8mb4 -u root < database\schema.sql
+   C:\xampp\mysql\bin\mysql.exe --default-character-set=utf8mb4 -u root < database\seed.sql
    ```
 
 4. **Initialiser la base non relationnelle** : démarrer `mongod`, puis :
