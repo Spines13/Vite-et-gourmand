@@ -10,3 +10,6 @@
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <?php require __DIR__ . '/nav.php'; ?>
 <main id="contenu-principal">
+<?php foreach (getFlashes() as $flash): ?>
+    <p class="flash flash-<?= e($flash['type']) ?>" role="alert"><?= e($flash['message']) ?></p>
+<?php endforeach; ?>

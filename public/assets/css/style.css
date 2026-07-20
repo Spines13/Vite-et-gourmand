@@ -102,3 +102,67 @@ footer ul {
     list-style: none;
     padding: 0;
 }
+
+.formulaire-page {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.formulaire-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.formulaire-page label {
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+.formulaire-page input,
+.formulaire-page select,
+.formulaire-page textarea {
+    padding: 0.5rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.formulaire-page .aide {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.formulaire-page button {
+    margin-top: 1.25rem;
+    cursor: pointer;
+    border: none;
+}
+
+.erreurs {
+    background: #fdecea;
+    color: #7a1f14;
+    border: 1px solid #f3c1ba;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    list-style: none;
+}
+
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.flash-success {
+    background: #e7f5ea;
+    color: #1e5631;
+    border: 1px solid #bfe3c8;
+}
+
+.flash-error {
+    background: #fdecea;
+    color: #7a1f14;
+    border: 1px solid #f3c1ba;
+}
