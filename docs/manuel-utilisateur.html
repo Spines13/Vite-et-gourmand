@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Vite & Gourmand — Manuel d'utilisation</title>
+<style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #2b2118; line-height: 1.55; margin: 0; font-size: 0.95rem; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    h1 { font-size: 1.7rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.25rem; border-bottom: 2px solid #b5482a; padding-bottom: 0.3rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.05rem; color: #7a2f1a; margin-top: 1.25rem; }
+    .couverture { text-align: center; padding-top: 30mm; }
+    .couverture h1 { font-size: 2.3rem; }
+    .couverture p { color: #666; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #e5ddd0; padding: 0.5rem 0.7rem; text-align: left; font-size: 0.9rem; }
+    th { background: #fff4e5; }
+    ol, ul { padding-left: 1.4rem; }
+    li { margin-bottom: 0.4rem; }
+    .encadre { background: #fff4e5; border: 1px solid #f0c987; border-radius: 6px; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+    code { background: #f1e9db; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<section class="page couverture">
+    <h1>Vite &amp; Gourmand</h1>
+    <p>Manuel d'utilisation</p>
+    <p>Présentation de l'application et parcours utilisateurs</p>
+</section>
+
+<section class="page">
+    <h1>Présentation</h1>
+    <p>
+        Vite &amp; Gourmand est une application web permettant à un traiteur événementiel
+        bordelais de présenter ses menus et de recevoir des commandes en ligne. Elle propose
+        quatre niveaux d'accès : visiteur (non connecté), utilisateur (client), employé et
+        administrateur.
+    </p>
+
+    <h2>Comptes de démonstration</h2>
+    <p>Les comptes suivants permettent de tester chacun des parcours décrits dans ce manuel.</p>
+    <table>
+        <thead><tr><th>Rôle</th><th>Email</th><th>Mot de passe</th></tr></thead>
+        <tbody>
+            <tr><td>Administrateur</td><td>admin@vite-et-gourmand.fr</td><td>AdminVG#2026</td></tr>
+            <tr><td>Employé</td><td>employe.demo@vite-et-gourmand.fr</td><td>EmployeVG#2026</td></tr>
+            <tr><td>Utilisateur</td><td>client.demo@vite-et-gourmand.fr</td><td>ClientVG#2026</td></tr>
+        </tbody>
+    </table>
+    <div class="encadre">
+        Le compte administrateur n'est jamais créable depuis l'application : il n'existe que
+        via le script <code>database/seed.sql</code>, conformément au cahier des charges.
+    </div>
+</section>
+
+<section class="page">
+    <h1>Parcours visiteur (non connecté)</h1>
+
+    <h2>Consulter les menus</h2>
+    <ol>
+        <li>Depuis la page d'accueil, cliquer sur <strong>« Nos menus »</strong> dans le menu.</li>
+        <li>Utiliser les filtres (prix, thème, régime, nombre de personnes) : la liste se met à
+        jour automatiquement, sans rechargement de page.</li>
+        <li>Cliquer sur <strong>« Voir le détail »</strong> d'un menu pour consulter sa
+        description complète, ses plats, ses allergènes et ses conditions de commande.</li>
+    </ol>
+
+    <h2>Créer un compte</h2>
+    <ol>
+        <li>Cliquer sur <strong>« Connexion »</strong> puis <strong>« Créer un compte »</strong>.</li>
+        <li>Renseigner nom, prénom, mobile, adresse, email et un mot de passe (10 caractères
+        minimum, avec majuscule, minuscule, chiffre et caractère spécial).</li>
+        <li>Un email de bienvenue est envoyé automatiquement et la connexion se fait aussitôt.</li>
+    </ol>
+
+    <h2>Contacter l'entreprise</h2>
+    <p>Depuis la page <strong>« Contact »</strong>, renseigner un titre, un message et une
+    adresse email : le message est enregistré et transmis par email à l'entreprise.</p>
+</section>
+
+<section class="page">
+    <h1>Parcours utilisateur (client connecté)</h1>
+    <p>Se connecter avec <code>client.demo@vite-et-gourmand.fr</code> / <code>ClientVG#2026</code>.</p>
+
+    <h2>Commander un menu</h2>
+    <ol>
+        <li>Depuis le détail d'un menu, cliquer sur <strong>« Commander ce menu »</strong>
+        (si non connecté, l'application invite d'abord à se connecter ou créer un compte, puis
+        ramène automatiquement sur la commande).</li>
+        <li>Le formulaire pré-remplit les coordonnées du compte et le menu choisi. Compléter
+        l'adresse de livraison, la date, l'heure et le nombre de personnes.</li>
+        <li>Le récapitulatif de prix (menu, réduction éventuelle de 10 %, frais de livraison)
+        se met à jour en temps réel.</li>
+        <li>Valider : un email de confirmation est envoyé et une page de confirmation
+        récapitule la commande.</li>
+    </ol>
+
+    <h2>Suivre, modifier ou annuler une commande</h2>
+    <ol>
+        <li>Depuis <strong>« Mon espace » → « Mes commandes »</strong>, cliquer sur une commande
+        pour voir son détail.</li>
+        <li>Tant que la commande est <em>« En attente »</em>, elle reste modifiable (sauf le
+        menu) et annulable.</li>
+        <li>Une fois la commande acceptée par l'équipe, son suivi (historique des statuts avec
+        date et heure) devient visible.</li>
+    </ol>
+
+    <h2>Laisser un avis</h2>
+    <p>Lorsqu'une commande passe au statut <em>« Terminée »</em>, un email invite le client à
+    laisser une note (1 à 5) et un commentaire depuis le détail de la commande. L'avis est
+    ensuite soumis à modération avant publication sur la page d'accueil.</p>
+
+    <h2>Gérer son profil</h2>
+    <p>Depuis <strong>« Mon espace » → « Modifier mes informations personnelles »</strong>, le
+    client peut mettre à jour ses coordonnées et changer son mot de passe.</p>
+</section>
+
+<section class="page">
+    <h1>Parcours employé</h1>
+    <p>Se connecter avec <code>employe.demo@vite-et-gourmand.fr</code> / <code>EmployeVG#2026</code>.</p>
+
+    <h2>Gérer le catalogue</h2>
+    <ul>
+        <li><strong>Menus :</strong> créer, modifier, désactiver un menu ; associer régimes,
+        plats et images.</li>
+        <li><strong>Plats :</strong> créer, modifier, supprimer un plat et ses allergènes.</li>
+        <li><strong>Horaires :</strong> mettre à jour les horaires d'ouverture, jour par jour.</li>
+    </ul>
+
+    <h2>Gérer les commandes</h2>
+    <ol>
+        <li>Depuis <strong>« Commandes »</strong>, filtrer par statut ou rechercher un client.</li>
+        <li>Ouvrir une commande pour la faire avancer dans son statut (acceptée, en préparation,
+        en cours de livraison, livrée...).</li>
+        <li>Si du matériel a été prêté, cocher la case correspondante : la commande passera
+        alors par le statut <em>« En attente du retour de matériel »</em> avant d'être
+        terminée (un email avec le délai de 10 jours ouvrés est envoyé au client).</li>
+        <li>Toute annulation nécessite d'indiquer le mode de contact utilisé (téléphone ou
+        email) et le motif, conformément à la politique de l'entreprise.</li>
+    </ol>
+
+    <h2>Modérer les avis</h2>
+    <p>Depuis <strong>« Avis »</strong>, valider ou refuser chaque avis en attente. Seuls les
+    avis validés apparaissent sur la page d'accueil.</p>
+</section>
+
+<section class="page">
+    <h1>Parcours administrateur</h1>
+    <p>Se connecter avec <code>admin@vite-et-gourmand.fr</code> / <code>AdminVG#2026</code>.</p>
+    <p>L'administrateur dispose de toutes les fonctionnalités de l'espace employé, ainsi que :</p>
+
+    <h2>Gérer les comptes employés</h2>
+    <ol>
+        <li>Depuis <strong>« Employés »</strong>, renseigner email, nom, prénom et mot de passe
+        pour créer un compte.</li>
+        <li>Le mot de passe n'est jamais transmis par email : l'employé doit se rapprocher de
+        l'administrateur pour l'obtenir.</li>
+        <li>Un compte employé peut être désactivé (par exemple en cas de départ) sans être
+        supprimé.</li>
+    </ol>
+
+    <h2>Statistiques et chiffre d'affaires</h2>
+    <p>Les pages <strong>« Statistiques »</strong> et <strong>« Chiffre d'affaires »</strong>
+    affichent respectivement le nombre de commandes par menu (sous forme de graphique) et le
+    chiffre d'affaires par menu, filtrable par menu et par période. Ces données proviennent de
+    la base MongoDB, alimentée automatiquement à chaque commande.</p>
+</section>
+
+</body>
+</html>

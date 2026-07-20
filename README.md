@@ -67,6 +67,29 @@ traiteur bordelais Vite & Gourmand.
      `C:\Windows\System32\drivers\etc\hosts`, et redémarrer Apache. L'application
      est alors accessible sur `http://vite-et-gourmand.local/`.
 
+## Emails (local)
+
+L'envoi d'email utilise la fonction native `mail()` de PHP, configurée dans
+`php.ini` (`SMTP=localhost`, `smtp_port=25`) pour passer par **Mercury Mail**,
+le serveur SMTP inclus dans XAMPP. Démarrer Mercury Mail depuis le panneau de
+contrôle XAMPP pour tester localement les emails (bienvenue, confirmation de
+commande, changement de statut, réinitialisation de mot de passe...).
+
+## Documentation
+
+Le dossier [`docs/`](docs) contient les livrables documentaires, chacun en
+version source (`.html`) et export PDF prêt à l'emploi :
+
+- `manuel-utilisateur.pdf` — présentation de l'application et parcours par profil
+- `charte-graphique.pdf` — palette de couleurs, typographie et maquettes desktop/mobile
+- `doc-technique.pdf` — choix technologiques, MCD, diagrammes UML, déploiement
+- `doc-gestion-projet.pdf` — méthodologie et backlog du projet
+
+Pour régénérer un PDF après modification du `.html` correspondant :
+```
+"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless --disable-gpu --print-to-pdf="docs\<nom>.pdf" --no-pdf-header-footer "file:///C:/xampp/htdocs/Vite_Et_Gourmand/docs/<nom>.html"
+```
+
 ## Comptes de démonstration
 
 | Rôle           | Email                              | Mot de passe    |
