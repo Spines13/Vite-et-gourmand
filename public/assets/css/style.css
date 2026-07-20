@@ -166,3 +166,128 @@ footer ul {
     color: #7a1f14;
     border: 1px solid #f3c1ba;
 }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    background: transparent;
+    color: #b5482a;
+    border: 1px solid #b5482a;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filtres-menus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+}
+
+.filtres-menus div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filtres-menus label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.filtres-menus input,
+.filtres-menus select {
+    padding: 0.4rem;
+    border: 1px solid #cbbfa9;
+    border-radius: 4px;
+}
+
+.menus-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-card {
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #eee6d8;
+}
+
+.menu-card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.menu-card-theme {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #b5482a;
+    margin: 0;
+}
+
+.menu-card-rupture {
+    color: #7a1f14;
+    font-weight: 600;
+}
+
+.menu-detail-galerie {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.menu-detail-galerie img {
+    width: 220px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee6d8;
+    flex-shrink: 0;
+}
+
+.menu-detail-plats {
+    padding-left: 1.25rem;
+}
+
+.allergenes {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.menu-detail-conditions {
+    background: #fff4e5;
+    border: 1px solid #f0c987;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+}

@@ -40,7 +40,8 @@ final class AuthService
     public static function requireLogin(): array
     {
         if (empty($_SESSION['utilisateur_id'])) {
-            flash('error', 'Veuillez vous connecter pour accéder à cette page.');
+            $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'] ?? '/';
+            flash('error', 'Veuillez vous connecter ou créer un compte pour accéder à cette page.');
             redirect('/connexion.php');
         }
 

@@ -17,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $motDePasse = (string) ($_POST['mot_de_passe'] ?? '');
 
     if (AuthService::attemptLogin($email, $motDePasse)) {
-        $destination = match ($_SESSION['role']) {
+        $destination = $_SESSION['redirect_after_login'] ?? match ($_SESSION['role']) {
             'administrateur' => '/admin/index.php',
             'employe'        => '/employe/index.php',
             default          => '/utilisateur/index.php',
         };
+        unset($_SESSION['redirect_after_login']);
         flash('success', 'Vous êtes connecté(e).');
         redirect($destination);
     }
