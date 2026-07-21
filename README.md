@@ -13,7 +13,11 @@ traiteur bordelais Vite & Gourmand.
 ## Prérequis
 
 - [XAMPP](https://www.apachefriends.org/fr/index.html) (Apache + PHP 8.1 ou supérieur + MySQL/MariaDB)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community) + `mongosh`
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community) (binaires `mongod`)
+- [Composer](https://getcomposer.org/) (installe la librairie PHP `mongodb/mongodb`)
+- L'extension PHP `mongodb` ([DLL Windows](https://pecl.php.net/package/mongodb)), à placer dans
+  `php/ext/` et activer avec `extension=mongodb` dans `php.ini` (choisir la version TS/NTS et
+  x64/x86 correspondant à votre PHP, visible via `php -i`)
 - Git
 
 ## Installation en local
@@ -30,6 +34,10 @@ traiteur bordelais Vite & Gourmand.
    ```
    copy .env.example .env
    ```
+   Installer ensuite la dépendance PHP MongoDB :
+   ```
+   php composer.phar install
+   ```
 
 3. **Créer la base de données relationnelle** : démarrer MySQL depuis le
    panneau de contrôle XAMPP, puis importer les scripts dans l'ordre. Le
@@ -41,9 +49,16 @@ traiteur bordelais Vite & Gourmand.
    C:\xampp\mysql\bin\mysql.exe --default-character-set=utf8mb4 -u root < database\seed.sql
    ```
 
-4. **Initialiser la base non relationnelle** : démarrer `mongod`, puis :
+4. **Initialiser la base non relationnelle** : démarrer `mongod` (par exemple
+   `mongod.exe --dbpath C:\mongodb\data --logpath C:\mongodb\logs\mongod.log`),
+   puis initialiser la collection :
    ```
    mongosh < database\mongodb\init.js
+   ```
+   Si `mongosh` n'est pas installé (le zip des binaires MongoDB ne l'inclut
+   pas toujours), l'équivalent PHP suivant fonctionne aussi bien :
+   ```
+   php database\mongodb\init.php
    ```
 
 5. **Servir l'application** : le répertoire web public est `public/`
