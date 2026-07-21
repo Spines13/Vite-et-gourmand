@@ -21,7 +21,7 @@ if (!empty($_GET['recherche'])) {
 $commandes = CommandeModel::listAll($filtres);
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <h1>Gestion des commandes</h1>
 

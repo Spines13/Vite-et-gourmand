@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $menus = MenuModel::listPourGestion();
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <h1>Gestion des menus</h1>
     <p><a class="btn-primary" href="/employe/menu-form.php">Ajouter un menu</a></p>
