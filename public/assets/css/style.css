@@ -12,8 +12,8 @@ body {
     margin: 0;
     overflow-x: hidden;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: #2b2118;
-    background: #fdfaf6;
+    color: #1F2B1D;
+    background: #F6FAF1;
     line-height: 1.5;
 }
 
@@ -21,7 +21,7 @@ body {
     position: absolute;
     left: -9999px;
     top: 0;
-    background: #2b2118;
+    background: #1F2B1D;
     color: #fff;
     padding: 0.5rem 1rem;
     z-index: 100;
@@ -37,7 +37,7 @@ body {
     justify-content: space-between;
     padding: 1rem 1.5rem;
     background: #fff;
-    border-bottom: 1px solid #e5ddd0;
+    border-bottom: 1px solid #DCE8D5;
 }
 
 .navbar-brand {
@@ -75,7 +75,7 @@ main {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
-    background: #b5482a;
+    background: #3E7C59;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
@@ -91,13 +91,13 @@ main {
 
 .avis-item {
     background: #fff;
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
     padding: 1.25rem;
 }
 
 footer {
-    border-top: 1px solid #e5ddd0;
+    border-top: 1px solid #DCE8D5;
     padding: 2rem 1.5rem;
     margin-top: 2rem;
     font-size: 0.9rem;
@@ -128,7 +128,7 @@ footer ul {
 .formulaire-page select,
 .formulaire-page textarea {
     padding: 0.5rem;
-    border: 1px solid #cbbfa9;
+    border: 1px solid #C3D6BE;
     border-radius: 4px;
     font: inherit;
 }
@@ -185,8 +185,8 @@ footer ul {
     display: inline-block;
     padding: 0.5rem 1.1rem;
     background: transparent;
-    color: #b5482a;
-    border: 1px solid #b5482a;
+    color: #3E7C59;
+    border: 1px solid #3E7C59;
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
@@ -200,7 +200,7 @@ footer ul {
     margin-bottom: 2rem;
     padding: 1rem;
     background: #fff;
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
 }
 
@@ -218,7 +218,7 @@ footer ul {
 .filtres-menus input,
 .filtres-menus select {
     padding: 0.4rem;
-    border: 1px solid #cbbfa9;
+    border: 1px solid #C3D6BE;
     border-radius: 4px;
 }
 
@@ -230,7 +230,7 @@ footer ul {
 
 .menu-card {
     background: #fff;
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
     overflow: hidden;
     display: flex;
@@ -241,7 +241,7 @@ footer ul {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    background: #eee6d8;
+    background: #E3ECD9;
 }
 
 .menu-card-body {
@@ -255,7 +255,7 @@ footer ul {
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    color: #b5482a;
+    color: #3E7C59;
     margin: 0;
 }
 
@@ -276,7 +276,7 @@ footer ul {
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 6px;
-    background: #eee6d8;
+    background: #E3ECD9;
     flex-shrink: 0;
 }
 
@@ -290,8 +290,8 @@ footer ul {
 }
 
 .menu-detail-conditions {
-    background: #fff4e5;
-    border: 1px solid #f0c987;
+    background: #FBF3D9;
+    border: 1px solid #E6C875;
     border-radius: 6px;
     padding: 1rem;
     margin: 1.5rem 0;
@@ -302,7 +302,7 @@ footer ul {
 }
 
 .formulaire-commande fieldset {
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
     margin-bottom: 1.5rem;
     padding: 1rem 1.25rem;
@@ -323,7 +323,7 @@ footer ul {
 .formulaire-commande select {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #cbbfa9;
+    border: 1px solid #C3D6BE;
     border-radius: 4px;
     font: inherit;
     margin-top: 0.25rem;
@@ -337,7 +337,7 @@ footer ul {
 
 .recapitulatif-prix {
     background: #fff;
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
     padding: 1rem 1.25rem;
     margin-bottom: 1.5rem;
@@ -353,7 +353,7 @@ footer ul {
 .table-commandes td {
     text-align: left;
     padding: 0.6rem 0.75rem;
-    border-bottom: 1px solid #e5ddd0;
+    border-bottom: 1px solid #DCE8D5;
 }
 
 .suivi-commande {
@@ -363,7 +363,7 @@ footer ul {
 
 .suivi-commande li {
     padding: 0.5rem 0.75rem;
-    border-left: 3px solid #b5482a;
+    border-left: 3px solid #3E7C59;
     margin-bottom: 0.5rem;
     background: #fff;
 }
@@ -373,13 +373,13 @@ footer ul {
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0.75rem 1.5rem;
-    background: #fff4e5;
-    border-bottom: 1px solid #f0c987;
+    background: #FBF3D9;
+    border-bottom: 1px solid #E6C875;
 }
 
 .sous-nav a {
     text-decoration: none;
-    color: #7a4a1f;
+    color: #2C5940;
     font-weight: 600;
 }
 
@@ -389,7 +389,7 @@ footer ul {
     gap: 0.75rem;
     margin: 1.5rem 0;
     background: #fff;
-    border: 1px solid #e5ddd0;
+    border: 1px solid #DCE8D5;
     border-radius: 6px;
     padding: 1.25rem;
 }
@@ -402,7 +402,7 @@ footer ul {
 }
 
 .graphique-barre-piste {
-    background: #f1e9db;
+    background: #E9F0DE;
     border-radius: 4px;
     height: 1.25rem;
     overflow: hidden;
@@ -411,7 +411,7 @@ footer ul {
 .graphique-barre-remplissage {
     display: block;
     height: 100%;
-    background: #b5482a;
+    background: #3E7C59;
 }
 
 .graphique-barre-valeur {

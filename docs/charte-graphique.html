@@ -8,45 +8,45 @@
     * { box-sizing: border-box; }
     body {
         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-        color: #2b2118;
+        color: #1F2B1D;
         line-height: 1.5;
         margin: 0;
     }
     .page { page-break-after: always; padding-top: 4mm; }
     .page:last-child { page-break-after: auto; }
     h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
-    h2 { font-size: 1.3rem; border-bottom: 2px solid #b5482a; padding-bottom: 0.3rem; margin-top: 2rem; }
-    .sous-titre { color: #7a4a1f; font-weight: 600; margin-top: 0; }
+    h2 { font-size: 1.3rem; border-bottom: 2px solid #3E7C59; padding-bottom: 0.3rem; margin-top: 2rem; }
+    .sous-titre { color: #2C5940; font-weight: 600; margin-top: 0; }
     .couverture { text-align: center; padding-top: 25mm; }
     .couverture h1 { font-size: 2.5rem; }
     .couverture p { color: #666; }
     .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
-    .swatch { border: 1px solid #e5ddd0; border-radius: 8px; overflow: hidden; }
+    .swatch { border: 1px solid #DCE8D5; border-radius: 8px; overflow: hidden; }
     .swatch-couleur { height: 60px; }
     .swatch-infos { padding: 0.5rem 0.75rem; font-size: 0.85rem; }
     .swatch-infos strong { display: block; }
-    .type-exemple { border: 1px solid #e5ddd0; border-radius: 8px; padding: 1rem 1.25rem; margin: 0.5rem 0; }
+    .type-exemple { border: 1px solid #DCE8D5; border-radius: 8px; padding: 1rem 1.25rem; margin: 0.5rem 0; }
     .type-exemple .h1-demo { font-size: 1.8rem; font-weight: 700; margin: 0; }
     .type-exemple .h2-demo { font-size: 1.3rem; font-weight: 700; margin: 0.5rem 0; }
     .type-exemple .body-demo { font-size: 1rem; margin: 0; }
     .type-exemple .aide-demo { font-size: 0.8rem; color: #666; margin: 0.25rem 0 0; }
     .composants { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
-    .composant-demo { border: 1px solid #e5ddd0; border-radius: 8px; padding: 1rem; }
+    .composant-demo { border: 1px solid #DCE8D5; border-radius: 8px; padding: 1rem; }
     .btn-primary-demo {
-        display: inline-block; padding: 0.6rem 1.3rem; background: #b5482a; color: #fff;
+        display: inline-block; padding: 0.6rem 1.3rem; background: #3E7C59; color: #fff;
         border-radius: 4px; font-size: 0.9rem;
     }
     .btn-secondary-demo {
-        display: inline-block; padding: 0.6rem 1.3rem; background: transparent; color: #b5482a;
-        border: 1px solid #b5482a; border-radius: 4px; font-size: 0.9rem; margin-left: 0.5rem;
+        display: inline-block; padding: 0.6rem 1.3rem; background: transparent; color: #3E7C59;
+        border: 1px solid #3E7C59; border-radius: 4px; font-size: 0.9rem; margin-left: 0.5rem;
     }
-    .carte-demo { border: 1px solid #e5ddd0; border-radius: 6px; padding: 0.75rem; background: #fff; }
-    .carte-demo .theme { color: #b5482a; font-size: 0.7rem; text-transform: uppercase; }
+    .carte-demo { border: 1px solid #DCE8D5; border-radius: 6px; padding: 0.75rem; background: #fff; }
+    .carte-demo .theme { color: #3E7C59; font-size: 0.7rem; text-transform: uppercase; }
     figure { margin: 1rem 0; text-align: center; }
-    figure img { max-width: 100%; border: 1px solid #e5ddd0; border-radius: 6px; }
+    figure img { max-width: 100%; border: 1px solid #DCE8D5; border-radius: 6px; }
     figcaption { font-size: 0.85rem; color: #666; margin-top: 0.35rem; }
     .maquettes-mobile { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-    .maquettes-mobile img { max-width: 100%; border: 1px solid #e5ddd0; border-radius: 6px; }
+    .maquettes-mobile img { max-width: 100%; border: 1px solid #DCE8D5; border-radius: 6px; }
 </style>
 </head>
 <body>
@@ -59,34 +59,34 @@
 
 <section class="page">
     <h1>Palette de couleurs</h1>
-    <p>La palette s'inspire d'une ambiance chaleureuse et artisanale, cohérente avec l'univers
-    d'un traiteur événementiel : une teinte terracotta comme couleur d'accent, sur un fond
-    crème et un texte brun profond pour une bonne lisibilité.</p>
+    <p>La palette s'inspire d'une identité fraîche et « healthy » : un vert sauge/forêt comme
+    couleur d'accent — évoquant les produits frais et le fait-maison — sur un fond crème légèrement
+    verdi, avec un texte vert très foncé pour une bonne lisibilité.</p>
 
     <div class="palette">
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#b5482a"></div>
-            <div class="swatch-infos"><strong>Terracotta (accent)</strong>#B5482A — boutons primaires, liens, prix</div>
+            <div class="swatch-couleur" style="background:#3E7C59"></div>
+            <div class="swatch-infos"><strong>Vert sauge (accent)</strong>#3E7C59 — boutons primaires, liens, prix</div>
         </div>
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#7a2f1a"></div>
-            <div class="swatch-infos"><strong>Terracotta foncé</strong>#7A2F1A — dégradés, survol</div>
+            <div class="swatch-couleur" style="background:#2C5940"></div>
+            <div class="swatch-infos"><strong>Vert forêt</strong>#2C5940 — dégradés, survol</div>
         </div>
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#2b2118"></div>
-            <div class="swatch-infos"><strong>Texte principal</strong>#2B2118 — corps de texte, titres</div>
+            <div class="swatch-couleur" style="background:#1F2B1D"></div>
+            <div class="swatch-infos"><strong>Texte principal</strong>#1F2B1D — corps de texte, titres</div>
         </div>
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#fdfaf6;border-bottom:1px solid #e5ddd0"></div>
-            <div class="swatch-infos"><strong>Fond crème</strong>#FDFAF6 — arrière-plan général</div>
+            <div class="swatch-couleur" style="background:#F6FAF1;border-bottom:1px solid #DCE8D5"></div>
+            <div class="swatch-infos"><strong>Fond crème verdi</strong>#F6FAF1 — arrière-plan général</div>
         </div>
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#e5ddd0"></div>
-            <div class="swatch-infos"><strong>Bordure neutre</strong>#E5DDD0 — séparateurs, cartes</div>
+            <div class="swatch-couleur" style="background:#DCE8D5"></div>
+            <div class="swatch-infos"><strong>Bordure neutre</strong>#DCE8D5 — séparateurs, cartes</div>
         </div>
         <div class="swatch">
-            <div class="swatch-couleur" style="background:#fff4e5;border-bottom:1px solid #f0c987"></div>
-            <div class="swatch-infos"><strong>Fond alerte douce</strong>#FFF4E5 — conditions, sous-navigation</div>
+            <div class="swatch-couleur" style="background:#FBF3D9;border-bottom:1px solid #E6C875"></div>
+            <div class="swatch-infos"><strong>Fond alerte douce</strong>#FBF3D9 — conditions, sous-navigation</div>
         </div>
         <div class="swatch">
             <div class="swatch-couleur" style="background:#e7f5ea;border-bottom:1px solid #bfe3c8"></div>
