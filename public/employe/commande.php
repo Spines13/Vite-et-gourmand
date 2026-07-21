@@ -85,7 +85,7 @@ $statutsLibelles = getPDO()->query('SELECT code, libelle FROM statut_commande')-
 $peutEvoluer = !in_array($commande['statut_code'], ['terminee', 'annulee'], true);
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <p><a href="/employe/commandes.php">&larr; Retour aux commandes</a></p>
     <h1>Commande <?= e($commande['numero_commande']) ?></h1>
