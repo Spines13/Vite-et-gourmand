@@ -69,7 +69,7 @@ require __DIR__ . '/../src/Views/partials/header.php';
                         <blockquote>
                             <?= nl2br(htmlspecialchars($avis['commentaire'])) ?>
                         </blockquote>
-                        <p class="avis-auteur">— <?= htmlspecialchars($avis['prenom']) ?></p>
+                        <p class="avis-auteur"><?= htmlspecialchars($avis['prenom']) ?></p>
                     </li>
                 <?php endforeach; ?>
             </ul>
