@@ -13,7 +13,7 @@ $commandesEnAttente = CommandeModel::listAll(['statut_code' => 'en_attente']);
 $avisEnAttente = AvisModel::listEnAttente();
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <h1>Espace employé</h1>
     <ul>

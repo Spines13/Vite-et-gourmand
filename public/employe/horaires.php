@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $horaires = HoraireModel::listAll();
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <h1>Gestion des horaires</h1>
 

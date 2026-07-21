@@ -19,7 +19,7 @@ $plats = PlatModel::listAll();
 $libellesCategorie = ['entree' => 'Entrée', 'plat' => 'Plat', 'dessert' => 'Dessert'];
 
 require __DIR__ . '/../../src/Views/partials/header.php';
-require __DIR__ . '/../../src/Views/partials/nav-employe.php';
+require __DIR__ . '/../../src/Views/partials/nav-espace.php';
 ?>
     <h1>Gestion des plats</h1>
     <p><a class="btn-primary" href="/employe/plat-form.php">Ajouter un plat</a></p>
