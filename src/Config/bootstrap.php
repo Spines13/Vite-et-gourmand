@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
+    require_once __DIR__ . '/../../vendor/autoload.php';
+}
+
 require_once __DIR__ . '/Env.php';
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/../Helpers/functions.php';
