@@ -85,6 +85,55 @@ main {
     color: #2C5940;
 }
 
+.separateur {
+    width: 80px;
+    height: 3px;
+    background: #3E7C59;
+    border: none;
+    border-radius: 2px;
+    margin: 2.5rem auto;
+}
+
+.atouts {
+    text-align: center;
+    padding: 1rem 1rem 2rem;
+}
+
+.atouts-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.atout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.atout-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #DCE8D5;
+    color: #2C5940;
+}
+
+.atout-icone svg {
+    width: 28px;
+    height: 28px;
+}
+
+.atout p {
+    margin: 0;
+    max-width: 22ch;
+}
+
 .btn-primary {
     display: inline-block;
     margin-top: 1rem;
