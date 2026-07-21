@@ -1,5 +1,11 @@
 /* Vite & Gourmand - styles de base (en attente de la charte graphique définitive) */
 
+@font-face {
+    font-family: "LT Perfume";
+    src: url("../fonts/LTPerfume-2.ttf") format("truetype");
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -41,10 +47,11 @@ body {
 }
 
 .navbar-brand {
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-family: "LT Perfume", cursive;
+    font-weight: 400;
+    font-size: 2rem;
     text-decoration: none;
-    color: inherit;
+    color: #2C5940;
 }
 
 .navbar-links {
@@ -69,6 +76,13 @@ main {
 .hero {
     text-align: center;
     padding: 3rem 1rem;
+}
+
+.hero h1 {
+    font-family: "LT Perfume", cursive;
+    font-weight: 400;
+    font-size: 4rem;
+    color: #2C5940;
 }
 
 .btn-primary {
