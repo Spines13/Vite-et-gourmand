@@ -144,12 +144,17 @@ main {
     border-radius: 4px;
 }
 
+.avis {
+    text-align: center;
+}
+
 .avis-liste {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
     list-style: none;
     padding: 0;
+    margin-top: 1.5rem;
 }
 
 .avis-item {
