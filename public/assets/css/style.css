@@ -181,7 +181,72 @@ footer ul {
     margin: 0 auto;
 }
 
-.formulaire-page form {
+.contact-entete {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+}
+
+.contact-entete p {
+    color: #666;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contact-info-item .atout-icone {
+    flex-shrink: 0;
+}
+
+.contact-info-titre {
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+}
+
+.contact-info-item p:last-child {
+    margin: 0;
+    color: #666;
+    font-size: 0.92rem;
+}
+
+.contact-form-carte {
+    background: #fff;
+    border: 1px solid #DCE8D5;
+    border-radius: 8px;
+    padding: 1.75rem;
+}
+
+.contact-form-carte .formulaire-page {
+    max-width: none;
+    margin: 0;
+}
+
+@media (min-width: 800px) {
+    .contact-layout {
+        grid-template-columns: 1fr 1.3fr;
+    }
+}
+
+.formulaire-page form,
+form.formulaire-page {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
