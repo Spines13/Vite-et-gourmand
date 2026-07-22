@@ -25,6 +25,7 @@ $horaires = getPDO()->query(
         <a href="/mentions-legales.php">Mentions légales</a>
         <a href="/cgv.php">Conditions générales de vente</a>
     </nav>
+    <p class="copyright">&copy; 2026 Vite &amp; Gourmand</p>
 </footer>
 </body>
 </html>
