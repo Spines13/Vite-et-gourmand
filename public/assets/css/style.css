@@ -240,6 +240,12 @@ footer a:focus {
     color: #2C5940;
 }
 
+.copyright {
+    margin: 1.5rem 0 0;
+    color: #666;
+    font-size: 0.8rem;
+}
+
 .formulaire-page {
     max-width: 480px;
     margin: 0 auto;
