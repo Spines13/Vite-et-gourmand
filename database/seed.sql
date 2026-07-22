@@ -98,8 +98,8 @@ INSERT INTO menu_plat (menu_id, plat_id) VALUES
     (2, 3), (2, 6), (2, 8), (2, 9);
 
 INSERT INTO menu_image (menu_id, chemin_image, ordre) VALUES
-    (1, 'assets/img/menus/noel-traditionnel-1.png', 0),
-    (2, 'assets/img/menus/paques-vegetarien-1.png', 0);
+    (1, 'assets/img/menus/Menu_Noel_Traditionnel.png', 0),
+    (2, 'assets/img/menus/Menu_Paques_Vegetarien.png', 0);
 
 -- ---------------------------------------------------------------------
 -- Commandes de demonstration (client.demo@vite-et-gourmand.fr)
