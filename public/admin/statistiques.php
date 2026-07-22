@@ -16,7 +16,6 @@ require __DIR__ . '/../../src/Views/partials/header.php';
 require __DIR__ . '/../../src/Views/partials/nav-admin.php';
 ?>
     <h1>Nombre de commandes par menu</h1>
-    <p class="aide">Ces données proviennent de la base non relationnelle MongoDB (collection <code>commande_analytics</code>).</p>
 
     <?php if (!$disponible): ?>
         <p class="erreurs" role="alert">MongoDB n'est pas configuré sur cet environnement. Voir <code>database/mongodb/README.md</code> pour l'installation.</p>
