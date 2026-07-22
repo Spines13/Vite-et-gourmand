@@ -62,9 +62,24 @@ body {
     padding: 0;
 }
 
+.navbar-links li {
+    padding-left: 1.25rem;
+    border-left: 1px solid #DCE8D5;
+}
+
+.navbar-links li:first-child {
+    padding-left: 0;
+    border-left: none;
+}
+
 .navbar-links a {
     text-decoration: none;
     color: inherit;
+}
+
+.navbar-links a.actif {
+    font-weight: 700;
+    color: #2C5940;
 }
 
 main {
@@ -166,14 +181,40 @@ main {
 
 footer {
     border-top: 1px solid #DCE8D5;
-    padding: 2rem 1.5rem;
-    margin-top: 2rem;
+    padding: 4rem 1.5rem;
+    margin-top: 3rem;
     font-size: 0.9rem;
+    text-align: center;
+}
+
+footer h2 {
+    margin-bottom: 1.25rem;
 }
 
 footer ul {
     list-style: none;
     padding: 0;
+    margin: 0 0 2.5rem;
+}
+
+footer li {
+    margin-bottom: 0.4rem;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+footer a {
+    color: #3E7C59;
+    text-decoration: underline;
+}
+
+footer a:hover,
+footer a:focus {
+    color: #2C5940;
 }
 
 .formulaire-page {

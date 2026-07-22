@@ -52,7 +52,7 @@ require __DIR__ . '/../src/Views/partials/header.php';
         </form>
 
         <p><a href="/mot-de-passe-oublie.php">Mot de passe oublié ?</a></p>
-        <p>Pas encore de compte ? <a href="/inscription.php">Créer un compte</a></p>
+        <p><a href="/inscription.php">Créer un compte</a></p>
     </section>
 <?php
 require __DIR__ . '/../src/Views/partials/footer.php';
