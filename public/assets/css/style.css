@@ -201,6 +201,29 @@ footer li {
     margin-bottom: 0.4rem;
 }
 
+.horaires-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    gap: 0.6rem 1.5rem;
+}
+
+.horaires-grille li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 0;
+}
+
+.horaires-jour {
+    font-weight: 600;
+}
+
+.horaires-heures {
+    color: #666;
+}
+
 footer nav {
     display: flex;
     justify-content: center;

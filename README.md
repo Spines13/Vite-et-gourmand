@@ -5,10 +5,10 @@ traiteur bordelais Vite & Gourmand.
 
 ## Stack technique
 
-- Front : HTML5, CSS, JavaScript (vanilla)
+- Front : HTML5, CSS, JavaScript
 - Back-end : PHP natif + PDO
 - Base de données relationnelle : MySQL / MariaDB
-- Base de données non relationnelle : MongoDB (reporting des commandes, cf. [`database/mongodb/README.md`](database/mongodb/README.md))
+- Base de données non relationnelle : MongoDB
 
 ## Prérequis
 
@@ -59,6 +59,16 @@ traiteur bordelais Vite & Gourmand.
    pas toujours), l'équivalent PHP suivant fonctionne aussi bien :
    ```
    php database\mongodb\init.php
+   ```
+
+   ⚠️ `mongod` n'est pas installé comme service Windows ici : il ne redémarre
+   pas automatiquement avec la machine. S'il a été arrêté, les commandes
+   passées entre-temps ne sont pas comptabilisées dans les statistiques et le
+   chiffre d'affaires (l'application continue de fonctionner normalement,
+   MongoDB n'étant utilisé que pour ce reporting). Une fois `mongod` relancé,
+   rattraper les commandes manquées avec :
+   ```
+   php database\mongodb\resync.php
    ```
 
 5. **Servir l'application** : le répertoire web public est `public/`

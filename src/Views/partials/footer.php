@@ -8,13 +8,15 @@ $horaires = getPDO()->query(
 <footer>
     <section aria-label="Horaires d'ouverture">
         <h2>Horaires</h2>
-        <ul>
+        <ul class="horaires-grille">
             <?php foreach ($horaires as $h): ?>
                 <li>
-                    <?= htmlspecialchars(ucfirst($h['jour'])) ?> :
-                    <?= $h['ferme']
-                        ? 'Fermé'
-                        : htmlspecialchars(substr($h['heure_ouverture'], 0, 5) . ' - ' . substr($h['heure_fermeture'], 0, 5)) ?>
+                    <span class="horaires-jour"><?= htmlspecialchars(ucfirst($h['jour'])) ?></span>
+                    <span class="horaires-heures">
+                        <?= $h['ferme']
+                            ? 'Fermé'
+                            : htmlspecialchars(substr($h['heure_ouverture'], 0, 5) . ' à ' . substr($h['heure_fermeture'], 0, 5)) ?>
+                    </span>
                 </li>
             <?php endforeach; ?>
         </ul>
