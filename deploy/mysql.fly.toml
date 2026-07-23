@@ -1,0 +1,13 @@
+app = "vite-et-gourmand-db"
+primary_region = "cdg"
+
+[build]
+  image = "mysql:8"
+
+[mounts]
+  source = "mysql_data"
+  destination = "/var/lib/mysql"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
