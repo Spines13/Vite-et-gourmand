@@ -4,3 +4,6 @@
 *.log
 .DS_Store
 Thumbs.db
+docs/*.html
+docs/captures/
+docs/assets/
