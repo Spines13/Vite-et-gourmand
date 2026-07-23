@@ -1,0 +1,28 @@
+app = "vite-et-gourmand-ecf"
+primary_region = "cdg"
+
+[build]
+
+[env]
+  APP_ENV = "production"
+  DB_HOST = "vite-et-gourmand-db.internal"
+  DB_PORT = "3306"
+  DB_NAME = "vite_et_gourmand"
+  DB_CHARSET = "utf8mb4"
+  MONGO_DB = "vite_et_gourmand"
+
+[mounts]
+  source = "vite_et_gourmand_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
