@@ -70,6 +70,7 @@ require __DIR__ . '/../src/Views/partials/header.php';
         <?php if ((int) $menu['stock_disponible'] <= 0): ?>
             <p class="menu-card-rupture">Ce menu est actuellement en rupture de stock.</p>
         <?php else: ?>
+            <p class="menu-detail-stock">Il reste <?= (int) $menu['stock_disponible'] ?> commande<?= (int) $menu['stock_disponible'] > 1 ? 's' : '' ?> possible<?= (int) $menu['stock_disponible'] > 1 ? 's' : '' ?> pour ce menu.</p>
             <a class="btn-primary" href="/commande.php?menu_id=<?= (int) $menu['menu_id'] ?>">Commander ce menu</a>
         <?php endif; ?>
     </article>
